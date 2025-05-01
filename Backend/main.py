@@ -8,6 +8,7 @@ import re
 from fastapi.middleware.cors import CORSMiddleware 
 from dotenv import load_dotenv
 load_dotenv()
+import uvicorn
 
 # Import your GenAI client setup here
 # from google import genai
@@ -125,3 +126,6 @@ async def summarize_meeting(file: UploadFile = File(...)):
         return FileResponse(output_pdf.name, filename="meeting_summary.pdf", media_type="application/pdf")
     finally:
         os.unlink(tmp_path)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))  # Use PORT env variable, default to 10000
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
