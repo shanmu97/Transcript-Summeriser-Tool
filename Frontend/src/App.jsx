@@ -36,7 +36,7 @@ function App() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch("http://localhost:8000/summarize/", {
+      const response = await fetch("https://transcript-summeriser-tool.onrender.com/summarize/", {
         method: "POST",
         body: formData,
       });
